@@ -1,29 +1,9 @@
 #pragma once
 #include<vector>
 #include<cstdlib>
+#include"LeetCodeAlgorithm.h"
 
 using namespace std;
-
-
-//Definition for singly-linked list.
-typedef struct ListNode {
-	int val;
-	ListNode *next;
-	ListNode() : val(0), next(nullptr) {}
-	ListNode(int x) : val(x), next(nullptr) {}
-	ListNode(int x, ListNode* next) :val(x), next(next) {}
-}ListNode;
-
-
-//Definition for a binary tree node.
-typedef struct TreeNode {
-	int val;
-	TreeNode *left;
-	TreeNode *right;
-	TreeNode() :val(0), left(nullptr), right(nullptr) {}
-	TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-	TreeNode(int x, TreeNode* left, TreeNode* right) :val(x), left(left), right(right) {}
-}TreeNode;
 
 
 class Sword {
@@ -36,4 +16,14 @@ public:
 
 																	  
 	vector<int> reversePrint(ListNode* head);//06.从尾到头打印链表
+
+											
+	TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder); //07.重建二叉树
+	TreeNode* setNode(vector<int>& preorder, int preBegin, int preEnd, vector<int>& inorder, int inBegin, int inEnd);
+
+	int fib(int n);// 10.1.斐波那契数列
+
+	int numWays(int n);//10.2.青蛙跳台阶问题
+
+	int minArray(vector<int>& numbers);//11. 旋转数组的最小数字
 };
