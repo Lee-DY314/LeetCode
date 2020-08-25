@@ -1,3 +1,4 @@
-﻿  SwordMain.cpp
+﻿  SwordAlgorithm.cpp
+g:\vs_program\2015\leetcode\leetcode\swordalgorithm.cpp(97): warning C4018: “<”: 有符号/无符号不匹配
   LeetCode.vcxproj -> G:\vs_program\2015\LeetCode\Debug\LeetCode.exe
   LeetCode.vcxproj -> G:\vs_program\2015\LeetCode\Debug\LeetCode.pdb (Full PDB)

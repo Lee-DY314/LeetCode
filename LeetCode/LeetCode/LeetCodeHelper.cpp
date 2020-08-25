@@ -38,7 +38,7 @@ void Solution::visit(TreeNode* node)
 {
 	if (node != nullptr)
 	{
-		cout << node->val;
+		cout << node->val << " ";
 	}
 }
 

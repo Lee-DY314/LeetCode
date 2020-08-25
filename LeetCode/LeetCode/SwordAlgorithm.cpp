@@ -89,3 +89,96 @@ vector<int> Sword::reversePrint(ListNode* head)
 	return ans;
 }
 
+//07.重建二叉树
+map<int, int> searchmap;
+
+TreeNode* Sword::buildTree(vector<int>& preorder, vector<int>& inorder) 
+{
+	for (int i = 0; i < inorder.size(); i++)
+	{
+		searchmap.insert(pair<int, int>(inorder[i],i));
+		//另一种方式
+		//searchmap[i] = inorder[i];
+	}
+
+	return setNode(preorder,0,preorder.size()-1,inorder,0,inorder.size()-1);
+}
+
+//可以通过 传入原向量的迭代器代替新建向量 减少空间复杂度
+TreeNode* Sword::setNode(vector<int>& preorder,int preBegin,int preEnd, vector<int>& inorder,int inBegin,int inEnd)
+{
+	if (preBegin > preEnd)
+		return nullptr;
+	int rootval = preorder[preBegin];
+	int rootpos = searchmap[rootval];
+	TreeNode* root = new TreeNode(rootval);
+	if (preBegin == preEnd)
+	{
+		return root;
+	}
+	else
+	{
+		int leftNodes = rootpos - inBegin, rightNodes = inEnd - rootpos;
+		root->left = setNode(preorder, preBegin + 1, preBegin+leftNodes, inorder, inBegin, rootpos-1);
+		root->right = setNode(preorder, preBegin + 1+leftNodes, preEnd, inorder, rootpos + 1, inEnd);
+		return root;
+	}
+	
+}
+
+//10.1.斐波那契数列
+int Sword::fib(int n)
+{
+	if (n <= 1)
+		return n;
+	int num1 = 0;
+	int num2 = 1;
+	int num3;
+	for (int i = 1; i < n; i++)
+	{
+		num3 = (num1 + num2) % 1000000007;
+		num1 = num2;
+		num2 = num3;
+	}
+	return num3;
+}
+
+//10.2.青蛙跳台阶问题
+int Sword::numWays(int n)
+{
+	if (n <= 1) return 1;
+	int a = 1, b = 1;
+	int sum;
+	for (int i = 1; i < n; i++)
+	{
+		sum = (a + b) % 1000000007;
+		a = b;
+		b = sum;
+	}
+	return sum;
+}
+
+//11. 旋转数组的最小数字
+int Sword::minArray(vector<int>& numbers)
+{
+	int left = 0;
+	int right = numbers.size() - 1;
+
+	while (left < right)
+	{
+		int mid = left + (right - left) / 2;
+        if (numbers[mid] < numbers[right])
+		{
+			right = mid;
+		}
+		else if (numbers[mid] > numbers[right])
+		{
+			left = mid + 1;
+		}
+		else
+		{
+			right -= 1;
+		}
+	}
+	return numbers[left];
+}
