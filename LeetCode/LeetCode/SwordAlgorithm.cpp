@@ -978,6 +978,7 @@ void Sword::helper_34(TreeNode* root, int target)
 	return;
 }
 
+
 //KMP
 void Sword::getNext(string T, int *next)
 {
