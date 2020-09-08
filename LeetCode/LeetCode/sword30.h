@@ -61,3 +61,5 @@ private:
 	vector<int> data;
 	vector<int> minNum;
 };
+
+//test
