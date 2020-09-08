@@ -54,6 +54,9 @@ public:
 	int search(vector<int>& nums, int target);//33.搜索旋转排序数组
 	
 	string multiply(string num1, string num2);//43.字符串相乘
+											  
+	vector<vector<int>> permute(vector<int>& nums);//46.全排列
+	void generatePermute(vector<int>& nums, vector<int>& cur, vector<bool>& used);
 
 	TreeNode* sortedListToBST(ListNode* head);//109.有序链表转换二叉搜索树（平衡二叉树）
 	TreeNode* buildTree_109(ListNode* left, ListNode* right);
@@ -69,6 +72,7 @@ public:
 
 	//helper
 	void createVector(vector<int>& nums,int num[]);
+	void printMatrix(vector<vector<int>>& nums);
 
 	TreeNode* createTree(TreeNode* root);
 	void visit(TreeNode* node);

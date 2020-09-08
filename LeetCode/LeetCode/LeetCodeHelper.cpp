@@ -17,6 +17,20 @@ void Solution::createVector(vector<int>& nums,int num[])
 	}
 }
 
+void Solution::printMatrix(vector<vector<int>>& nums)
+{
+	int size = nums.size();
+	int len = nums[0].size();
+	for (int i = 0; i < size; i++)
+	{
+		for (int j = 0; j < len; j++)
+		{
+			cout << nums[i][j] << " ";
+		}
+		cout << endl;
+	}
+}
+
 TreeNode* Solution::createTree(TreeNode* root)
 {
 	char data;
@@ -74,3 +88,4 @@ void Solution::postTraversal(TreeNode* root)
 		visit(root);
 	}
 }
+

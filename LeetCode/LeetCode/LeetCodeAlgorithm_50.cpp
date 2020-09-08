@@ -478,5 +478,39 @@ string Solution::multiply(string num1, string num2)
 	return ans;
 }
 
+//46.È«ÅÅÁĞ
+vector<vector<int>> ans;
+vector<vector<int>> Solution::permute(vector<int>& nums)
+{
+	int len = nums.size();
+	if (len == 0) return ans;
+	vector<int> cur;
+	vector<bool> used(len, false);
+	generatePermute(nums, cur, used);
+	return ans;
+}
+
+void Solution::generatePermute(vector<int>& nums, vector<int>& cur, vector<bool>& used)
+{
+	if (nums.size() == cur.size())
+	{
+		ans.push_back(cur);
+	}
+	else
+	{
+		for (int i = 0; i < nums.size(); i++)
+		{
+			if (used[i] == false)
+			{
+				cur.push_back(nums[i]);
+				used[i] = true;
+				generatePermute(nums, cur, used);
+				used[i] = false;
+				cur.pop_back();
+			}
+		}
+	}
+}
+
 
 

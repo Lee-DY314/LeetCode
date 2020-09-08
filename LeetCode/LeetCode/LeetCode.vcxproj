@@ -148,6 +148,7 @@
   <ItemGroup>
     <ClInclude Include="LeetCodeAlgorithm.h" />
     <ClInclude Include="sword09.h" />
+    <ClInclude Include="sword30.h" />
     <ClInclude Include="SwordAlgorithm.h" />
   </ItemGroup>
   <ItemGroup>

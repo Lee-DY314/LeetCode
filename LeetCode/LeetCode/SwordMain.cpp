@@ -1,6 +1,7 @@
 #include "SwordAlgorithm.h"
 #include "LeetCodeAlgorithm.h"
 #include "sword09.h"
+#include "sword30.h"
 #include <stdlib.h>
 #include <vector>
 #include <algorithm>
@@ -110,11 +111,373 @@ using namespace std;
 
 //11. 旋转数组的最小数字
 
+//int main()
+//{
+//	vector<int> numbers = { 2,2,2,0,1 };
+//	Sword sword;
+//	int ans = sword.minArray(numbers);
+//	cout << ans;
+//	return 0;
+//}
+
+
+//12.矩阵中的路径
+
+//int main()
+//{
+//	vector<vector<char>> board =
+//	//{ { 'A','B','C','E' },
+//	//  { 'S','F','C','S' },
+//	//  { 'A','D','E','E' },
+//	//};
+//	{
+//		{'a','b'}
+//	};
+//	Sword sword;
+//	bool ans = sword.exist(board, "ba");
+//	cout << ans;
+//	return 0;
+//}
+
+//13.机器人的运动范围
+
+//int main()
+//{
+//	Sword sword;
+//	int ans = sword.movingCount(2, 3, 1);
+//	cout << ans;
+//	return 0;
+//}
+
+//14.1.剪绳子1
+
+//int main()
+//{
+//	Sword sword;
+//	int ans = sword.cuttingRope_1(10);
+//	cout << ans << endl;
+//	return 0;
+//}
+
+//14.2.剪绳子2
+
+//int main()
+//{
+//	Sword sword;
+//	int ans = sword.cuttingRope_2(990);
+//	cout << ans << endl;
+//	return 0;
+//}
+
+//15.二进制中1的个数
+
+//int main()
+//{
+//	Sword sword;
+//	int ans = sword.hammingWeight(4294967293,1,2);
+//	cout << ans << endl;
+//	return 0;
+//}
+
+//16.数值的整数次方
+
+//int main()
+//{
+//	Sword sword;
+//	double ans = sword.myPow(0.1,10);
+//	cout << ans << endl;
+//	return 0;
+//}
+
+//17. 打印从1到最大的n位数
+
+//int main()
+//{
+//	Sword sword;
+//	vector<int> ans = sword.printNumbers(3);
+//	for (int i = 0; i < ans.size(); i++)
+//	{
+//		cout << ans[i] << endl;
+//	}
+//	return 0;
+//}
+
+//18.删除链表的节点
+
+//int main()
+//{
+//	//ListNode* a3 = new ListNode(9);
+//	ListNode* a2 = new ListNode(-99);
+//	ListNode* a1 = new ListNode(5, a2);
+//	ListNode* head = new ListNode(-3,a1);
+//
+//	Sword sword;
+//	ListNode* ans;
+//	ans = sword.deleteNode(head, -3);
+//	while (ans != nullptr)
+//	{
+//		cout << ans->val << endl;
+//		ans = ans->next;
+//	}
+//	return 0;
+//}
+
+//19.正则表达式的匹配
+
+//int main()
+//{
+//	string s = "aaa";
+//	string p = "ab*a*c*a";
+//	Sword sword;
+//	bool ans = sword.isMatch(s, p);
+//	cout << ans << endl;
+//	return 0;
+//}
+
+//20. 表示数值的字符串
+
+//int main()
+//{
+//	string s = "12e";
+//	Sword sword;
+//	bool ans = sword.isNumber(s);
+//	cout << ans << endl;
+//	return 0;
+//}
+
+//21.调整数组顺序使奇数位于偶数前面
+
+//int main()
+//{
+//	vector<int> nums = { 2,4,6};
+//	Sword sword;
+//	vector<int> ans = sword.exchange(nums);
+//	for (int i=0;i<ans.size();i++)
+//	{
+//		cout << nums[i] << ' ';
+//	}
+//	return 0;
+//}
+
+
+//27.二叉树的镜像
+
+//int main()
+//{
+//	TreeNode* root = new TreeNode(3);
+//	TreeNode* a1 = new TreeNode(4);
+//	TreeNode* a2 = new TreeNode(5);
+//	TreeNode* a3 = new TreeNode(1);
+//	TreeNode* a4 = new TreeNode(2);
+//	root->left = a1;
+//	root->right = a2;
+//	a1->left = a3;
+//	a1->right = a4;
+//	Sword sword;
+//	TreeNode* ans = sword.mirrorTree(root);
+//	Solution sol;
+//	sol.midTraversal(ans);
+//	cout << ans << endl;
+//	return 0;
+//}
+
+//28.对称的二叉树
+
+//int main()
+//{
+//	TreeNode* root = new TreeNode(1);
+//	TreeNode* a1 = new TreeNode(2);
+//	TreeNode* a2 = new TreeNode(2);
+//	TreeNode* a3 = new TreeNode(3);
+//	TreeNode* a4 = new TreeNode(3);
+//	root->left = a1;
+//	root->right = a2;
+//	a1->right = a3;
+//	a2->right = a4;
+//	Sword sword;
+//	bool ans = sword.isSymmetric(root);
+//	cout << ans << endl;
+//	return 0;
+//}
+
+//29.顺时针打印矩阵
+
+//int main()
+//{
+//	vector<vector<int>> matrix = {
+//		{1 ,2 ,3 ,4},
+//		{5 ,6 ,7 ,8},
+//		{9 ,10,11,12},
+//		{13,14,15,16}
+//	};
+//	Sword sword;
+//	vector<int> ans = sword.spiralOrder(matrix);
+//	for (int i : ans)
+//		cout << i << " ";
+//	return 0;
+//}
+
+//30. 包含min函数的栈
+
+//int main()
+//{
+//	MinStack min;
+//	min.push(-2);
+//	min.push(0);
+//	min.push(-3);
+//	cout << min.min();
+//	min.pop();
+//	cout<< min.top();
+//	cout << min.min();
+//}
+
+//31. 栈的压入、弹出序列
+
+//int main()
+//{
+//	vector<int> pushed = { 1,2,3,4,5 };
+//	vector<int> popped = { 4,5,3,2,1 };
+//	Sword sword;
+//	bool ans = sword.validateStackSequences(pushed, popped);
+//	cout << ans;
+//  return 0;
+//}
+
+//32 - I. 从上到下打印二叉树
+
+//int main()
+//{
+//	TreeNode* root = new TreeNode(3);
+//	TreeNode* a1 = new TreeNode(9);
+//	TreeNode* a2 = new TreeNode(20);
+//	TreeNode* a3 = new TreeNode(15);
+//	TreeNode* a4 = new TreeNode(7);
+//	root->left = a1;
+//	root->right = a2;
+//	a2->left = a3;
+//	a2->right = a4;
+//
+//	Sword sword;
+//	vector<int> ans = sword.levelOrder_1(root);
+//	for (int i : ans)
+//	{
+//		cout << i << " ";
+//	}
+//	return 0;
+//}
+
+//32 - II.从上到下打印二叉树II
+
+//int main()
+//{
+//	TreeNode* root = new TreeNode(3);
+//	TreeNode* a1 = new TreeNode(9);
+//	TreeNode* a2 = new TreeNode(20);
+//	TreeNode* a3 = new TreeNode(15);
+//	TreeNode* a4 = new TreeNode(7);
+//	root->left = a1;
+//	root->right = a2;
+//	a2->left = a3;
+//	a2->right = a4;
+//
+//	Sword sword;
+//	vector<vector<int>> ans = sword.levelOrder_2(root);
+//	for (int i=0;i<ans.size();i++)
+//	{
+//		for (int j = 0; j < ans[i].size(); j++)
+//		{
+//			cout << ans[i][j] << " ";
+//		}
+//		cout << endl;
+//	}
+//	return 0;
+//}
+
+//32 - II.从上到下打印二叉树II
+
+//int main()
+//{
+//	TreeNode* root = new TreeNode(3);
+//	TreeNode* a1 = new TreeNode(9);
+//	TreeNode* a2 = new TreeNode(20);
+//	TreeNode* a3 = new TreeNode(15);
+//	TreeNode* a4 = new TreeNode(7);
+//	root->left = a1;
+//	root->right = a2;
+//	a2->left = a3;
+//	a2->right = a4;
+//
+//	Sword sword;
+//	vector<vector<int>> ans = sword.levelOrder_3(root);
+//	for (int i = 0; i<ans.size(); i++)
+//	{
+//		for (int j = 0; j < ans[i].size(); j++)
+//		{
+//			cout << ans[i][j] << " ";
+//		}
+//		cout << endl;
+//	}
+//	return 0;
+//}
+
+//33.二叉搜索树的后序遍历序列
+
+//int main()
+//{
+//	vector<int> postorder = { 1,3,2,6,5 };
+//	Sword sword;
+//	bool ans = sword.verifyPostorder(postorder);
+//	cout << ans << endl;
+//	return 0;
+//}
+
+//34. 二叉树中和为某一值的路径
+
 int main()
 {
-	vector<int> numbers = { 2,2,2,0,1 };
+	TreeNode* root = new TreeNode(5);
+	TreeNode* a1 = new TreeNode(4);
+	TreeNode* a2 = new TreeNode(8);
+	TreeNode* a3 = new TreeNode(11);
+	TreeNode* a4 = new TreeNode(13);
+	TreeNode* a5 = new TreeNode(4);
+	TreeNode* a6 = new TreeNode(7);
+	TreeNode* a7 = new TreeNode(2);
+	TreeNode* a8 = new TreeNode(5);
+	TreeNode* a9 = new TreeNode(1);
+	root->left = a1;
+	root->right = a2;
+	a1->left = a3;
+	a2->left = a4;
+	a2->right = a5;
+	a3->left = a6;
+	a3->right = a7;
+	a5->left = a8;
+	a5->right = a9;
+
 	Sword sword;
-	int ans = sword.minArray(numbers);
-	cout << ans;
+	vector<vector<int>> ans = sword.pathSum(root,22);
+	for (int i = 0; i<ans.size(); i++)
+	{
+		for (int j = 0; j < ans[i].size(); j++)
+		{
+			cout << ans[i][j] << " ";
+		}
+		cout << endl;
+	}
 	return 0;
 }
+
+//KMP算法
+
+//int main()
+//{
+//	Sword sword;
+//	int next[10];
+//	string T = "ababaaaba";
+//	sword.getNext(T, next);
+//	for (int i: next)
+//	{
+//		cout << i << " ";
+//	}
+//}

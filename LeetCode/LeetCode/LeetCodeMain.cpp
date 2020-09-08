@@ -234,6 +234,17 @@ using namespace std;
 //	return 0;
 //}
 
+//46.全排列
+
+//int main()
+//{
+//	vector<int> nums = { 1,2,3,4 };
+//	Solution sol;
+//	vector<vector<int>> ans = sol.permute(nums);
+//	sol.printMatrix(ans);
+//	return 0;
+//}
+
 
 //109.有序链表转换二叉搜索树（平衡二叉树）
 
