@@ -599,11 +599,22 @@ using namespace std;
 
 //45. 把数组排成最小的数
 
+//int main()
+//{
+//	vector<int> nums = {3,30,34,5,9 };
+//	Sword sword;
+//	string ans = sword.minNumber(nums);
+//	cout << ans << endl;
+//	return 0;
+//	system("pause");
+//}
+
+//46. 把数字翻译成字符串
+
 int main()
 {
-	vector<int> nums = {3,30,34,5,9 };
 	Sword sword;
-	string ans = sword.minNumber(nums);
+	int ans = sword.translateNum(12345);
 	cout << ans << endl;
 	return 0;
 	system("pause");

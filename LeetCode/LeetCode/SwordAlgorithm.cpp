@@ -1403,6 +1403,27 @@ void Sword::fastSort(vector<string>& strs, int left, int right)
 	return;
 }
 
+//46. 把数字翻译成字符串
+int Sword::translateNum(int num)
+{
+	string str = to_string(num);
+	int len = str.size();
+	if (len < 2) return len;
+	vector<int> dp(len + 1);
+	dp[0] = 1;
+	dp[1] = 1;
+	for (int i = 1; i < len; i++)
+	{
+		dp[i + 1] = dp[i];
+		string pre = str.substr(i, 2);
+		if (pre <= "25" && pre >= "10")
+		{
+			dp[i + 1] += dp[i - 1];
+		}
+	}
+	return dp[len];
+}
+
 //50. 第一个只出现一次的字符
 char Sword::firstUniqChar(string s)
 {

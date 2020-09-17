@@ -167,6 +167,8 @@ public:
 
 	string minNumber(vector<int>& nums);//45. 把数组排成最小的数
 	void fastSort(vector<string>& strs, int left, int right);
+	
+	int translateNum(int num);//46. 把数字翻译成字符串
 
 	char Sword::firstUniqChar(string s);//50. 第一个只出现一次的字符
 
