@@ -3,6 +3,7 @@
 #include <vector>
 #include <algorithm>
 #include <iostream>
+#include <sstream>
 #include <cmath>
 #include <map> 
 #include <cstdlib>
@@ -10,6 +11,7 @@
 #include <queue>
 #include <unordered_map>
 #include <stack>
+#include <set>
 
 using namespace std;
 
@@ -978,6 +980,443 @@ void Sword::helper_34(TreeNode* root, int target)
 	return;
 }
 
+//35.复杂链表的复制
+Node* Sword::copyRandomList(Node* head)
+{
+	if (head == nullptr)
+	{
+		return head;
+	}
+	unordered_map<Node*, Node*> map;
+	Node* t = head;
+	while (t != nullptr)
+	{
+		map[t] = new Node(t->val);
+		t = t->next;
+	}
+	t = head;
+	while (t != nullptr)
+	{
+		if (t->next != nullptr)
+		{
+			map[t]->next = map[t->next];
+		}
+		if (t->random != nullptr)
+		{
+			map[t]->random = map[t->random];
+		}
+		t = t->next;
+	}
+	return map[head];
+}
+
+//36. 二叉搜索树与双向链表
+DLNode* pre, *head;
+DLNode* Sword::treeToDoublyList(DLNode* root)
+{
+	if (root == nullptr) return nullptr;
+	helper_36(root);
+	head->left = pre;
+	pre->right = head;
+	return head;
+}
+
+void Sword::helper_36(DLNode* cur)
+{
+	if (cur == nullptr) return;
+	helper_36(cur->left);
+
+	if (pre != nullptr)
+	{
+		pre -> right = cur;
+	}
+	else
+	{
+		head = cur;
+	}
+	cur->left = pre;
+	pre = cur;
+
+	helper_36(cur->right);
+}
+
+
+//37. 序列化二叉树(太难了，直接抄）
+// Encodes a tree to a single string.
+string Sword::serialize(TreeNode* root) {
+	ostringstream out;
+	queue<TreeNode*> q;
+	q.push(root);
+	while (!q.empty()) {
+		TreeNode* tmp = q.front();
+		q.pop();
+		if (tmp) {
+			out << tmp->val << " ";
+			q.push(tmp->left);
+			q.push(tmp->right);
+		}
+		else {
+			out << "null ";
+		}
+	}
+	return out.str();
+}
+
+// Decodes your encoded data to tree.
+TreeNode* Sword::deserialize(string data)
+{
+	istringstream input(data);
+	string val;
+	vector<TreeNode*> vec;
+	while (input >> val)
+	{
+		if (val == "null")
+			vec.push_back(nullptr);
+		else
+		{
+			TreeNode* temp = new TreeNode(stoi(val));
+			vec.push_back(temp);
+		}
+	}
+	int j = 1;
+	for (int i = 0; i < vec.size(); i++)
+	{
+		if (vec[i] == nullptr)
+			continue;
+		if (j < vec.size())
+			vec[i]->left = vec[j++];
+		if (j < vec.size())
+			vec[i]->right = vec[j++];
+	}
+	return vec[0];
+}
+
+//38.字符串的排列
+
+//超时！
+//vector<string> Sword::permutation(string s)
+//{
+//	int len = s.size();
+//	if (len == 0) return { "" };
+//	vector<string> ans;
+//	queue<string> que;
+//	string s1;
+//	s1.push_back(s[0]);
+//	que.push(s1);
+//	int pos = 0;
+//	while (!que.empty())
+//	{
+//		string pre = que.front();
+//		pos = pre.size() + 1;
+//		if (pos > len)
+//		{
+//			break;
+//		}
+//		que.pop();
+//		for (int j = 0; j < pos; j++)
+//		{
+//			string temp = pre;
+//			temp.insert(j, 1, s[pos - 1]);
+//			que.push(temp);
+//		}
+//	}
+//	while (!que.empty())
+//	{
+//		string t = que.front();
+//		que.pop();
+//		int sign = 0;
+//		for (int i = 0; i < ans.size(); i++)
+//		{
+//			if (t == ans[i])
+//			{
+//				sign = 1;
+//				break;
+//			}
+//		}
+//		if (sign == 1) continue;
+//		ans.push_back(t);
+//	}
+//	return ans;
+//}
+
+//dfs
+vector<string> ans_38;
+vector<char> c;
+vector<string> Sword::permutation(string s)
+{
+	for (int i = 0; i < s.size(); i++)
+	{
+		c.push_back(s[i]);
+	}
+	dfs(0);
+	return ans_38;
+}
+
+void Sword::dfs(int x)
+{
+	if (x == c.size() - 1)
+	{
+		string res(c.begin(), c.end());
+		ans_38.push_back(res);
+		return;
+	}
+	set<char> c_set;
+	for (int i = x; i < c.size(); i++)
+	{
+		if (c_set.count(c[i])) continue;
+		c_set.insert(c[i]);
+		swap(c[i], c[x]);
+		dfs(x + 1);
+		swap(c[i], c[x]);
+	}
+}
+
+//39. 数组中出现次数超过一半的数字
+//摩尔投票法（核心理念：正负抵消）
+int Sword::majorityElement(vector<int>& nums)
+{
+	int votes = 1;
+	int temp = nums[0];
+	for (int i = 1; i < nums.size(); i++)
+	{
+		if (votes == 0)
+		{
+			temp = nums[i];
+		}
+		if (nums[i] == temp)
+		{
+			votes++;
+		}
+		else
+		{
+			votes--;
+		}
+	}
+
+	int count = 0;
+	for (int num : nums)
+	{
+		if (num == temp) count++;
+	}
+	return count > nums.size() / 2 ? temp : 0;
+}
+
+//40. 最小的k个数
+//快速选择
+vector<int> Sword::getLeastNumbers(vector<int>& arr, int k)
+{
+	if (k == 0) return{};
+	else if (arr.size() <= k)
+		return arr;
+
+	quickSelect(arr, 0, arr.size() - 1, k);
+	vector<int> ans;
+	for (int i = 0; i < k; i++)
+	{
+		ans.push_back(arr[i]);
+	}
+	return ans;
+}
+
+void Sword::quickSelect(vector<int>& arr, int left, int right, int k)
+{
+	int j = partition(arr, left, right);
+	if (j == k)
+	{
+		return ;
+	}
+	if (j > k)
+	{
+		return quickSelect(arr, left, j - 1, k);
+	}
+	else
+	{
+		return quickSelect(arr, j + 1, right, k);
+	}
+}
+
+int Sword::partition(vector<int>& arr, int left, int right)
+{
+	int i = left, j = right;
+	int key = arr[left];
+	while (true)
+	{
+		while (i < j && arr[j] >= key)
+		{
+			j--;
+		}
+		while (i < j && arr[i] <= key)
+		{
+			i++;
+		}
+		if (i < j)
+		{
+			int t = arr[i];
+			arr[i] = arr[j];
+			arr[j] = t;
+		}
+		else
+		{
+			break;
+		}
+	}
+	arr[left] = arr[j];
+	arr[j] = key;
+	return j;
+}
+
+//大根堆
+vector<int> Sword::getLeastNumbers(vector<int>& arr, int k, bool useheap)
+{
+	vector<int>vec(k, 0);
+	if (k == 0) return vec; // 排除 0 的情况
+	priority_queue<int>Q;
+	for (int i = 0; i < k; ++i) Q.push(arr[i]);
+	for (int i = k; i < (int)arr.size(); ++i) {
+		if (Q.top() > arr[i]) {
+			Q.pop();
+			Q.push(arr[i]);
+		}
+	}
+	for (int i = 0; i < k; ++i) {
+		vec[i] = Q.top();
+		Q.pop();
+	}
+	return vec;
+}
+
+//42. 连续子数组的最大和
+int Sword::maxSubArray(vector<int>& nums)
+{
+	int len = nums.size();
+	vector<int> max(len);//从i开始的j个数的最大值
+	max[0] = nums[0];
+	for (int i = 1; i < len; i++)
+	{
+		int temp = max[i - 1] + nums[i];
+		max[i] = temp > nums[i] ? temp : nums[i];
+	}
+	int ans = max[0];
+	for (int i = 1; i < len; i++)
+	{
+		if (ans < max[i])
+		{
+			ans = max[i];
+		}
+	}
+	return ans;
+}
+
+//43. 1～n整数中1出现的次数
+int Sword::countDigitOne(int n)
+{
+	int cur = n % 10;
+	int res = 0;
+	long digit = 1;
+	int high = n / 10;
+	int low = 0;
+	while (high != 0 || cur != 0)
+	{
+		if (cur == 0)
+		{
+			res += high*digit;
+		}
+		else if (cur == 1)
+		{
+			res += high*digit + low + 1;
+		}
+		else
+		{
+			res += high*digit + digit;
+		}
+		low += digit*cur;
+		cur = high % 10;
+		high = high / 10;
+		digit *= 10;
+	}
+	return res;
+}
+
+//44. 数字序列中某一位的数字
+int Sword::findNthDigit(int n)
+{
+	// 计算该数字由几位数字组成，由1位：digits = 1；2位：digits = 2...
+	long base = 9, digits = 1;
+	while (n - base * digits > 0) {
+		n -= base * digits;
+		base *= 10;
+		digits++;
+	}
+
+	// 计算真实代表的数字是多少
+	int idx = n % digits;  // 注意由于上面的计算，n现在表示digits位数的第n个数字
+	if (idx == 0)idx = digits;
+	long number = 1;
+	for (int i = 1; i < digits; i++)
+		number *= 10;
+	number += (idx == digits) ? n / digits - 1 : n / digits;
+
+	// 从真实的数字中找到我们想要的那个数字
+	for (int i = idx; i<digits; i++) number /= 10;
+	return number % 10;
+}
+
+//45. 把数组排成最小的数
+string Sword::minNumber(vector<int>& nums)
+{
+	vector<string> strs;
+	for (int i = 0; i < nums.size(); i++)
+	{
+		strs.push_back(to_string(nums[i]));
+	}
+	fastSort(strs, 0, strs.size() - 1);
+	string ans;
+	for (string num : strs)
+	{
+		ans += num;
+	}
+	return ans;
+}
+
+void Sword::fastSort(vector<string>& strs, int left, int right)
+{
+	if (left >= right) return;
+	int i = left, j = right;
+	string key = strs[left];
+	while (i < j)
+	{
+		while (i < j && key + strs[j] <= strs[j] + key)
+			j--;
+		while (i < j && key + strs[i] >= strs[i] + key)
+			i++;
+		if (i < j)
+		{
+			string temp = strs[i];
+			strs[i] = strs[j];
+			strs[j] = temp;
+		}
+	}
+	strs[left] = strs[j];
+	strs[j] = key;
+	fastSort(strs, left, i - 1);
+	fastSort(strs, i + 1, right);
+	return;
+}
+
+//50. 第一个只出现一次的字符
+char Sword::firstUniqChar(string s)
+{
+	unordered_map<char, bool> dic;
+	for (char c : s)
+	{
+		dic[c] = dic.find(c) == dic.end();
+	}
+	for (char c : s)
+	{
+		if (dic[c]) return c;
+	}
+	return ' ';
+}
 
 //KMP
 void Sword::getNext(string T, int *next)

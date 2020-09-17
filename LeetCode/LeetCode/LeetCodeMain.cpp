@@ -3,7 +3,8 @@
 #include <vector>
 #include <algorithm>
 #include <iostream>
-#include<String>
+#include <String>
+#include <ctype.h>
 
 using namespace std;
 
@@ -245,6 +246,18 @@ using namespace std;
 //	return 0;
 //}
 
+//55. 跳跃游戏
+
+//int main()
+//{
+//	vector<int> nums = {3,2,1,0,4 };
+//	Solution sol;
+//	bool ans = sol.canJump(nums);
+//	cout << ans << endl;
+//	system("pause");
+//	return 0;
+//}
+
 
 //109.有序链表转换二叉搜索树（平衡二叉树）
 
@@ -285,5 +298,37 @@ using namespace std;
 //		}
 //		cout << endl;
 //	}
+//	return 0;
+//}
+
+
+//网易游戏测试工程师笔试题
+//输入：AAABBBCDD
+//输出：3A3B1C2D
+//int main()
+//{
+//	string str;
+//	getline(cin, str);
+//	int len = str.size();
+//	if (len == 0) return 0;
+//	string ans;
+//	char temp = str[0];
+//	int count = 1;
+//	for (int i = 1; i < len; i++)
+//	{
+//		if (temp == str[i])
+//		{
+//			count++;
+//		}
+//		else
+//		{
+//			ans = ans + to_string(count) + temp;
+//			temp = str[i];
+//			count = 1;
+//		}
+//	}
+//	ans = ans + to_string(count) + temp;
+//	cout << ans;
+//	system("pause");
 //	return 0;
 //}

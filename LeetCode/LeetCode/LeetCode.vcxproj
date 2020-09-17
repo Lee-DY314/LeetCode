@@ -149,9 +149,11 @@
     <ClInclude Include="LeetCodeAlgorithm.h" />
     <ClInclude Include="sword09.h" />
     <ClInclude Include="sword30.h" />
+    <ClInclude Include="Sword41.h" />
     <ClInclude Include="SwordAlgorithm.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="LeetCodeAlgorithm_100.cpp" />
     <ClCompile Include="LeetCodeAlgorithm_50.cpp" />
     <ClCompile Include="LeetCodeHelper.cpp" />
     <ClCompile Include="LeetCodeMain.cpp" />

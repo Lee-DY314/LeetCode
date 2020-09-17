@@ -33,6 +33,9 @@
     <ClCompile Include="SwordMain.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="LeetCodeAlgorithm_100.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LeetCodeAlgorithm.h">
@@ -45,6 +48,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="sword30.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Sword41.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

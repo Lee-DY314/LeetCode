@@ -58,6 +58,8 @@ public:
 	vector<vector<int>> permute(vector<int>& nums);//46.全排列
 	void generatePermute(vector<int>& nums, vector<int>& cur, vector<bool>& used);
 
+	bool canJump(vector<int>& nums);//55. 跳跃游戏
+
 	TreeNode* sortedListToBST(ListNode* head);//109.有序链表转换二叉搜索树（平衡二叉树）
 	TreeNode* buildTree_109(ListNode* left, ListNode* right);
 	ListNode* getMidNum_109(ListNode* left, ListNode* right);

@@ -5,6 +5,41 @@
 
 using namespace std;
 
+// Definition for a Node.
+class Node {
+public:
+	int val;
+	Node* next;
+	Node* random;
+
+	Node(int _val) {
+		val = _val;
+		next = nullptr;
+		random = nullptr;
+	}
+};
+
+// Definition for a Node of double-linked list.
+class DLNode {
+public:
+	int val;
+	DLNode* left;
+	DLNode* right;
+
+	DLNode() {}
+
+	DLNode(int _val) {
+		val = _val;
+		left = nullptr;
+		right = nullptr;
+	}
+
+	DLNode(int _val, DLNode* _left, DLNode* _right) {
+		val = _val;
+		left = _left;
+		right = _right;
+	}
+};
 
 class Sword {
 public:
@@ -104,6 +139,36 @@ public:
 
 	vector<vector<int>> pathSum(TreeNode* root, int sum);//34. 二叉树中和为某一值的路径
 	void helper_34(TreeNode* root, int sum);
+	
+	Node* copyRandomList(Node* head);//35.复杂链表的复制
+									 
+	DLNode* treeToDoublyList(DLNode* root);//36. 二叉搜索树与双向链表
+	void helper_36(DLNode* cur);
+	
+	string serialize(TreeNode* root);//37. 序列化二叉树
+	TreeNode* deserialize(string data);
+
+	vector<string> permutation(string s);//38.字符串的排列
+	void dfs(int x);
+	
+	int majorityElement(vector<int>& nums);//39. 数组中出现次数超过一半的数字
+										 
+	vector<int> getLeastNumbers(vector<int>& arr, int k); //40. 最小的k个数
+	void quickSelect(vector<int>& arr, int left, int right, int k);
+	int partition(vector<int>& arr, int left, int right);
+
+	vector<int> getLeastNumbers(vector<int>& arr, int k, bool useheap);
+
+	int maxSubArray(vector<int>& nums);//42. 连续子数组的最大和
+									   
+	int countDigitOne(int n);//43. 1～n整数中1出现的次数
+							 
+	int findNthDigit(int n);//44. 数字序列中某一位的数字
+
+	string minNumber(vector<int>& nums);//45. 把数组排成最小的数
+	void fastSort(vector<string>& strs, int left, int right);
+
+	char Sword::firstUniqChar(string s);//50. 第一个只出现一次的字符
 
 	void getNext(string T, int *next);//KMP算法
 };

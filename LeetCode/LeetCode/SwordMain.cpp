@@ -2,6 +2,7 @@
 #include "LeetCodeAlgorithm.h"
 #include "sword09.h"
 #include "sword30.h"
+#include "sword41.h"
 #include <stdlib.h>
 #include <vector>
 #include <algorithm>
@@ -433,40 +434,192 @@ using namespace std;
 
 //34. 二叉树中和为某一值的路径
 
+//int main()
+//{
+//	TreeNode* root = new TreeNode(5);
+//	TreeNode* a1 = new TreeNode(4);
+//	TreeNode* a2 = new TreeNode(8);
+//	TreeNode* a3 = new TreeNode(11);
+//	TreeNode* a4 = new TreeNode(13);
+//	TreeNode* a5 = new TreeNode(4);
+//	TreeNode* a6 = new TreeNode(7);
+//	TreeNode* a7 = new TreeNode(2);
+//	TreeNode* a8 = new TreeNode(5);
+//	TreeNode* a9 = new TreeNode(1);
+//	root->left = a1;
+//	root->right = a2;
+//	a1->left = a3;
+//	a2->left = a4;
+//	a2->right = a5;
+//	a3->left = a6;
+//	a3->right = a7;
+//	a5->left = a8;
+//	a5->right = a9;
+//
+//	Sword sword;
+//	vector<vector<int>> ans = sword.pathSum(root,22);
+//	for (int i = 0; i<ans.size(); i++)
+//	{
+//		for (int j = 0; j < ans[i].size(); j++)
+//		{
+//			cout << ans[i][j] << " ";
+//		}
+//		cout << endl;
+//	}
+//	return 0;
+//}
+
+//35. 复杂链表的复制
+
+//int main()
+//{
+//	Node* a0 = new Node(7);
+//	Node* a1 = new Node(13);
+//	Node* a2 = new Node(11);
+//	Node* a3 = new Node(10);
+//	Node* a4 = new Node(1);
+//
+//	a0->next = a1;
+//	a1->next = a2;
+//	a2->next = a3;
+//	a3->next = a4;
+//	a4->next = nullptr;
+//
+//	a0->random = nullptr;
+//	a1->random = a0;
+//	a2->random = a4;
+//	a3->random = a2;
+//	a4->random = a0;
+//
+//	Sword sword;
+//	Node* ans = sword.copyRandomList(a0);
+//	while (ans!=nullptr)
+//	{
+//		cout << ans->val;
+//		if (ans->next != nullptr)
+//			cout << " next:" << ans->next->val;
+//		else
+//			cout << " next: null" ;
+//		if (ans->random != nullptr)
+//			cout << " random:" << ans->random->val;
+//		else
+//			cout << " random: null";
+//		ans = ans->next;
+//		cout << endl;
+//	}
+//	return 0;
+//}
+
+//38.字符串的排列
+
+//int main()
+//{
+//	string s = "aab";
+//	Sword sword;
+//	vector<string> ans = sword.permutation(s);
+//	for (auto i : ans)
+//		cout << i << endl;
+//	return 0;
+//	system("pause");
+//}
+
+//39. 数组中出现次数超过一半的数字
+
+//int main()
+//{
+//	vector<int> nums = {1,2,3,2,2,2,5,4,2};
+//	Sword sword;
+//	int ans = sword.majorityElement(nums);
+//	cout << ans << endl;
+//	return 0;
+//	system("pause");
+//}
+
+//40. 最小的k个数
+
+//int main()
+//{
+//	vector<int> nums = { 1,2,3,2,2,2,5,4,2 };
+//	Sword sword;
+//	vector<int> ans = sword.getLeastNumbers(nums,3,true);
+//	for (auto num : ans)
+//		cout << num << endl;
+//	return 0;
+//	system("pause");
+//}
+
+//41. 数据流中的中位数
+
+//int main()
+//{
+//	MedianFinder1* mid = new MedianFinder1();
+//	mid->addNum(2);
+//	double a1 = mid->findMedian();
+//	mid->addNum(3);
+//	double a2 = mid->findMedian();
+//	cout << a1 << endl;
+//	cout << a2 << endl;
+//}
+
+//42. 连续子数组的最大和
+
+//int main()
+//{
+//	vector<int> nums = { -2,1,-3,4,-1,2,1,-5,4 };
+//	Sword sword;
+//	int ans = sword.maxSubArray(nums);
+//	cout << ans << endl;
+//	return 0;
+//	system("pause");
+//}
+
+//43. 1～n整数中1出现的次数
+
+//int main()
+//{
+//	Sword sword;
+//	int ans = sword.countDigitOne(12);
+//	cout << ans << endl;
+//	return 0;
+//	system("pause");
+//}
+
+
+//44. 数字序列中某一位的数字
+
+//int main()
+//{
+//	Sword sword;
+//	int ans = sword.findNthDigit(1000000000);
+//	cout << ans << endl;
+//	return 0;
+//	system("pause");
+//}
+
+
+//45. 把数组排成最小的数
+
 int main()
 {
-	TreeNode* root = new TreeNode(5);
-	TreeNode* a1 = new TreeNode(4);
-	TreeNode* a2 = new TreeNode(8);
-	TreeNode* a3 = new TreeNode(11);
-	TreeNode* a4 = new TreeNode(13);
-	TreeNode* a5 = new TreeNode(4);
-	TreeNode* a6 = new TreeNode(7);
-	TreeNode* a7 = new TreeNode(2);
-	TreeNode* a8 = new TreeNode(5);
-	TreeNode* a9 = new TreeNode(1);
-	root->left = a1;
-	root->right = a2;
-	a1->left = a3;
-	a2->left = a4;
-	a2->right = a5;
-	a3->left = a6;
-	a3->right = a7;
-	a5->left = a8;
-	a5->right = a9;
-
+	vector<int> nums = {3,30,34,5,9 };
 	Sword sword;
-	vector<vector<int>> ans = sword.pathSum(root,22);
-	for (int i = 0; i<ans.size(); i++)
-	{
-		for (int j = 0; j < ans[i].size(); j++)
-		{
-			cout << ans[i][j] << " ";
-		}
-		cout << endl;
-	}
+	string ans = sword.minNumber(nums);
+	cout << ans << endl;
 	return 0;
+	system("pause");
 }
+
+//50. 第一个只出现一次的字符
+
+//int main()
+//{
+//	string str = "abcbadfhhgs";
+//	Sword sword;
+//	char ans = sword.firstUniqChar(str);
+//	cout << ans << endl;
+//	return 0;
+//	system("pause");
+//}
 
 //KMP算法
 
