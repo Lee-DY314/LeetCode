@@ -169,8 +169,26 @@ public:
 	void fastSort(vector<string>& strs, int left, int right);
 	
 	int translateNum(int num);//46. 把数字翻译成字符串
+							  
+	int maxValue(vector<vector<int>>& grid);//47. 礼物的最大价值
 
-	char Sword::firstUniqChar(string s);//50. 第一个只出现一次的字符
+	int maxValue(vector<vector<int>>& grid, bool dfs);
+	int helper_47(vector<vector<int>>& grid, int i, int j, int rlen, int clen);
+
+	int lengthOfLongestSubstring(string s);//48. 最长不含重复字符的子字符串
+			   
+	int nthUglyNumber(int n);//49.丑数
+
+	char firstUniqChar(string s);//50. 第一个只出现一次的字符
+								 
+	ListNode *getIntersectionNode(ListNode *headA, ListNode *headB);//52. 两个链表的第一个公共节点
+																	
+	int search(vector<int>& nums, int target);//53 - I. 在排序数组中查找数字 I
+											  
+	int missingNumber(vector<int>& nums);//53 - II. 0～n-1中缺失的数字
+										 
+	int kthLargest(TreeNode* root, int k);//54. 二叉搜索树的第k大节点
+	void dfs_54(TreeNode* root);
 
 	void getNext(string T, int *next);//KMP算法
 };

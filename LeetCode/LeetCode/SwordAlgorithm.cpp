@@ -1409,19 +1409,122 @@ int Sword::translateNum(int num)
 	string str = to_string(num);
 	int len = str.size();
 	if (len < 2) return len;
-	vector<int> dp(len + 1);
-	dp[0] = 1;
-	dp[1] = 1;
+	//dp数组
+	//vector<int> dp(len + 1);
+	//dp[0] = 1;
+	//dp[1] = 1;
+	//for (int i = 1; i < len; i++)
+	//{
+	//	dp[i + 1] = dp[i];
+	//	string pre = str.substr(i-1, 2);
+	//	if (pre <= "25" && pre >= "10")
+	//	{
+	//		dp[i + 1] += dp[i - 1];
+	//	}
+	//}
+	//return dp[len];
+
+	//优化空间
+	int p = 1, q = 1, r = 1;
+	// i-1     i     i+1
 	for (int i = 1; i < len; i++)
 	{
-		dp[i + 1] = dp[i];
-		string pre = str.substr(i, 2);
+		p = q; 
+		q = r;
+		r = 0;
+
+		r = q;
+		string pre = str.substr(i - 1, 2);
 		if (pre <= "25" && pre >= "10")
 		{
-			dp[i + 1] += dp[i - 1];
+			r += p;
 		}
 	}
-	return dp[len];
+	return r;
+}
+
+//47. 礼物的最大价值
+//深度优先搜索（超时了）
+int Sword::maxValue(vector<vector<int>>& grid,bool dfs)
+{
+	int rlen = grid.size();
+	if (rlen == 0) return 0;
+	int clen = grid[0].size();
+
+	int ans = helper_47(grid, 0, 0, rlen, clen);
+	return ans;
+}
+
+int Sword::helper_47(vector<vector<int>>& grid, int i, int j,int rlen,int clen)
+{
+	if (i<0 || i>rlen - 1 || j<0 || j> clen - 1) return 0;
+	int t1 = helper_47(grid, i + 1, j, rlen, clen);
+	t1 += grid[i][j];
+	int t2 = helper_47(grid, i, j + 1, rlen, clen);
+	t2 += grid[i][j];
+	return t1 > t2 ? t1 : t2;
+}
+
+//动态规划
+int Sword::maxValue(vector<vector<int>>& grid)
+{
+	int rlen = grid.size();
+	if (rlen == 0) return 0;
+	int clen = grid[0].size();
+	vector<vector<int>> dp(rlen, vector<int>(clen));
+	dp[0][0] = grid[0][0];
+	for (int i = 1; i < rlen; i++)
+	{
+		dp[i][0] = grid[i][0] + dp[i - 1][0];
+	}
+	for (int j = 1; j < clen; j++)
+	{
+		dp[0][j] = grid[0][j] + dp[0][j - 1];
+	}
+	for (int i = 1; i < rlen; i++)
+	{
+		for (int j = 1; j < clen; j++)
+		{
+			dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]) + grid[i][j];
+		}
+	}
+	return dp[rlen - 1][clen - 1];
+}
+
+//48. 最长不含重复字符的子字符串
+int Sword::lengthOfLongestSubstring(string s)
+{
+	unordered_map<char, int> dic;
+	int len = s.size();
+	if (len == 0) return 0;
+	int head = 0, tail = 0;
+	int res = 0;
+	while (tail < len)
+	{
+		if (dic.find(s[tail]) != dic.end())
+		{
+			head = max(head, dic[s[tail]] + 1);
+		}
+		dic[s[tail++]] = tail;
+		res = max(tail - head, res);
+	}
+	return res;
+}
+
+//49.丑数
+int Sword::nthUglyNumber(int n)
+{
+	int a = 0, b = 0, c = 0;
+	vector<int> dp(n, 0);
+	dp[0] = 1;
+	for (int i = 1; i<n; i++)
+	{
+		dp[i] = min(min(dp[a] * 2, dp[b] * 3), dp[c] * 5);
+		if (dp[i] == dp[a] * 2) a++;
+		if (dp[i] == dp[b] * 3) b++;
+		if (dp[i] == dp[c] * 5) c++;
+	}
+	return dp[n - 1];
 }
 
 //50. 第一个只出现一次的字符
@@ -1437,6 +1540,79 @@ char Sword::firstUniqChar(string s)
 		if (dic[c]) return c;
 	}
 	return ' ';
+}
+
+//52. 两个链表的第一个公共节点
+ListNode* Sword::getIntersectionNode(ListNode *headA, ListNode *headB)
+{
+	ListNode* h1 = headA;
+	ListNode* h2 = headB;
+	while (h1 != h2)
+	{
+		if (h1 != nullptr) h1 = h1->next;
+		else h1 = headB;
+
+		h2 = h2 != nullptr? h2->next : headA;
+	}
+	return h1;
+}
+
+//53 - I. 在排序数组中查找数字 I
+int Sword::search(vector<int>& nums, int target)
+{
+	int len = nums.size();
+	if (len == 0) return 0;
+	int i = 0, j = len - 1;
+	while (i <= j)
+	{
+		int mid = (i + j) / 2;
+		if (nums[mid] <= target) i = mid + 1;
+		else j = mid - 1;
+	}
+	
+	if (j >= 0 && nums[j] != target) return 0;
+	int right = j;
+	i = 0;
+	while (i <= j)
+	{
+		int mid = (i + j) / 2;
+		if (nums[mid] < target) i = mid + 1;
+		else j = mid - 1;
+	}
+	int left = i;
+	return right - left + 1;
+}
+
+//53 - II. 0～n-1中缺失的数字
+int Sword::missingNumber(vector<int>& nums)
+{
+	int len = nums.size();
+	int i = 0, j = len - 1;
+	while (i <= j)
+	{
+		int m = (i + j) / 2;
+		if (nums[m] == m) i = m + 1;
+		else j = m - 1;
+	}
+	return i;
+}
+
+//54. 二叉搜索树的第k大节点
+int temp_54, res_54;
+int Sword::kthLargest(TreeNode* root, int k)
+{
+	temp_54 = k;
+	dfs_54(root);
+	return res_54;
+}
+
+void Sword::dfs_54(TreeNode* root)
+{
+	if (root == nullptr) return;
+	dfs_54(root->right);
+	if (temp_54 == 0) return;
+	if (--temp_54 == 0) res_54 = root->val;
+	dfs_54(root->left);
 }
 
 //KMP

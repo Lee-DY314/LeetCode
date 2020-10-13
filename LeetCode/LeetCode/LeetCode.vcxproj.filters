@@ -36,6 +36,9 @@
     <ClCompile Include="LeetCodeAlgorithm_100.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="huyu.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LeetCodeAlgorithm.h">

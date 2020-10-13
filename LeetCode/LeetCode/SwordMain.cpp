@@ -611,14 +611,30 @@ using namespace std;
 
 //46. 把数字翻译成字符串
 
-int main()
-{
-	Sword sword;
-	int ans = sword.translateNum(12345);
-	cout << ans << endl;
-	return 0;
-	system("pause");
-}
+//int main()
+//{
+//	Sword sword;
+//	int ans = sword.translateNum(12345);
+//	cout << ans << endl;
+//	return 0;
+//	system("pause");
+//}
+
+//47. 礼物的最大价值
+
+//int main()
+//{
+//	vector<vector<int>> grid = {
+//		{1,3,1},
+//		{1,5,1},
+//		{4,2,1}
+//	};
+//	Sword sword;
+//	int ans = sword.maxValue(grid);
+//	cout << ans << endl;
+//	return 0;
+//	system("pause");
+//}
 
 //50. 第一个只出现一次的字符
 
@@ -631,6 +647,17 @@ int main()
 //	return 0;
 //	system("pause");
 //}
+
+//53 - I. 在排序数组中查找数字 I
+
+int main()
+{
+	vector<int> nums = { 5,7,7,8,8,10 };
+	Sword s;
+	int res = s.search(nums, 8);
+	cout << res << endl;
+	system("pause");
+}
 
 //KMP算法
 
@@ -645,3 +672,5 @@ int main()
 //		cout << i << " ";
 //	}
 //}
+
+
